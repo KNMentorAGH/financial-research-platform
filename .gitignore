@@ -1,0 +1,66 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Environment variables
+.env
+
+# Data - do not commit raw data
+data/raw/
+data/processed/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# MLflow
+mlruns/
+mlartifacts/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+*.log
+docker-compose.override.yml
+
+# Type checking cache
+.mypy_cache/
+
+# Ruff cache
+.ruff_cache/
+
+# Pytest
+.pytest_cache/
+htmlcov/
+.coverage
+
+# DuckDB
+*.duckdb
+*.duckdb.wal
+
+# PostgreSQL local dumps
+*.sql
+*.dump
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Distribution / packaging
+*.whl
