@@ -7,14 +7,25 @@ Projekt korzysta z globalnych standardów. Zanim zaczniesz, zapoznaj się z:
 - [Zasady współpracy (Contributing)](https://github.com/KNMentorAGH/.github/blob/main/.github/CONTRIBUTING.md)
 - [Baza wiedzy (SOLID, VSA, Naming)](https://github.com/KNMentorAGH/.github/tree/main/compendium)
 
-## 🚀 Szybki start
-1. **Instalacja narzędzi**:
-   - **Python**: Zainstaluj rozszerzenie **Ruff** w swoim IDE.
-   - **C#**: Skonfiguruj edytor tak, aby respektował ustawienia z pliku `.editorconfig`.
-2. **Czyszczenie szablonu**: Aby uniknąć błędów w procesach CI/CD, usuń zbędne pliki konfiguracyjne:
-   - Jeśli projekt jest w **Pythonie** — usuń plik `.editorconfig`.
-   - Jeśli projekt jest w **C#** — usuń plik `pyproject.toml`.
-3. **Konwencja**: Stosuj **Conventional Commits** (`typ: opis`).
+## 🚀 Quick Start
+
+Requirements: Docker and Docker Compose
+
+```bash
+git clone git@github.com:KNMentorAGH/financial-research-platform.git
+cd financial-research-platform
+cp .env.example .env
+docker compose up
+```
+
+Available at:
+
+- API: <http://localhost:8000/docs>
+- MLflow: <http://localhost:5000>
+- PostgreSQL: localhost:5432
+
+To stop: `docker compose down`
+To stop and remove data: `docker compose down -v`
 
 ## Zarządzanie gałęziami
 Stosujemy model Feature Branching. Nazwa każdej gałęzi musi spełniać wzorzec: `<typ>/<krótki-opis-kebab-case>`.
