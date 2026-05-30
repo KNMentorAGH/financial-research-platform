@@ -26,3 +26,32 @@ classmethod-decorators = ["classmethod"]
 quote-style = "double"
 indent-style = "space"
 skip-magic-trailing-comma = false
+
+[project]
+name = "financial-research-platform"
+version = "0.1.0"
+requires-python = "==3.11.*"
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn>=0.30.0",
+    "pydantic-settings>=2.0.0",
+    "yfinance>=0.2.0",
+    "pandas>=2.0.0",
+    "pyyaml>=6.0.0",
+    "sqlalchemy>=2.0.0",
+    "psycopg2-binary>=2.9.0",
+    "types-PyYAML>=6.0.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0.0", "ruff>=0.4.0", "mypy>=1.0.0"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["apps*", "services*"]
+exclude = ["data*", "research*", "infrastructure*", "configs*", "tests*"]
+
+# TODO: remove when yfinance add
+[[tool.mypy.overrides]]
+module = "yfinance.*"
+ignore_missing_imports = true
