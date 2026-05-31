@@ -1,22 +1,25 @@
-"""Sentiment service - analyzes sentiment of news articles using FinBERT."""
-
 import logging
+
+import pandas as pd
+
+from services.sentiment.baseline import SentimentBaselineEngine
 
 logger = logging.getLogger(__name__)
 
 
 def run() -> None:
-    """Run sentiment analysis pipeline step.
-
-    Contract:
-        Input:  news articles from PostgreSQL
-        Output: sentiment scores saved to PostgreSQL
-
-    Raises:
-        NotImplementedError: To be implemented by AI/ML Engineer.
-    """
+    """Run sentiment analysis pipeline step."""
     logger.info("Starting sentiment analysis pipeline step")
 
-    # TODO: implement actual sentiment analysis
+    mock_news = pd.DataFrame(
+        {
+            "title": ["NVDA revenue surge beats expectations"],
+            "ticker": ["NVDA"],
+            "published_at": [pd.Timestamp.now()],
+        }
+    )
 
-    raise NotImplementedError("Sentiment service - to be implemented by AI/ML Engineer")
+    engine = SentimentBaselineEngine()
+    processed_df = engine.process_news_dataframe(mock_news)
+
+    logger.info(f"Analyzed sentiment for {len(processed_df)} articles")
