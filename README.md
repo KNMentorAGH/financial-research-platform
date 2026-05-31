@@ -3,13 +3,6 @@
 Research platform for analyzing the impact of news on stock market behavior.
 Currently tracking semiconductor sector: NVDA, AMD, INTC.
 
-## Working Standards
-
-This project follows organization-wide standards. Before you start, please review:
-
-- [Contributing Guidelines](https://github.com/KNMentorAGH/.github/blob/main/.github/CONTRIBUTING.md)
-- [Knowledge Base (SOLID, VSA, Naming)](https://github.com/KNMentorAGH/.github/tree/main/compendium)
-
 ## Quick Start
 
 Requirements: Docker and Docker Compose
