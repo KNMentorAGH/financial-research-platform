@@ -47,3 +47,4 @@ Available steps:
 - `sentiment` - analyze news sentiment
 - `forecasting` - predict price direction
 - `backtesting` - evaluate strategy performance
+
