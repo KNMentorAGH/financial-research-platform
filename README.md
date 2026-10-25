@@ -23,6 +23,26 @@ Available at:
 To stop: `docker compose down`
 To stop and remove data: `docker compose down -v`
 
+## Database
+
+PostgreSQL 16 runs in Docker (`postgres` service) with a healthcheck - the API starts
+only after the database is ready.
+
+```bash
+# Start only the database
+docker compose up -d postgres
+
+# Check connection through the API
+curl http://localhost:8000/health/db
+
+# Open psql shell
+docker compose exec postgres psql -U postgres -d financial_research
+```
+
+Scripts run on your machine connect to `localhost:5432` (values from `.env`).
+Shared connection code lives in `services/storage/database.py`
+(`get_engine()`, `session_scope()`, `check_connection()`).
+
 ## Running the Pipeline
 
 The pipeline orchestrates service execution in configurable order.
