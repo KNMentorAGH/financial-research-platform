@@ -7,7 +7,7 @@ Tables:
     news_tickers - which tickers an article is related to (many-to-many)
 """
 
-from datetime import date, datetime
+import datetime as dt
 
 from sqlalchemy import (
     BigInteger,
@@ -38,7 +38,9 @@ class Asset(Base):
 
     ticker: Mapped[str] = mapped_column(String(16), primary_key=True)
     sector: Mapped[str | None] = mapped_column(String(64))
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+    created_at: Mapped[dt.datetime] = mapped_column(
+        DateTime(timezone=True), server_default=func.now()
+    )
 
 
 class Price(Base):
@@ -49,7 +51,7 @@ class Price(Base):
     ticker: Mapped[str] = mapped_column(
         String(16), ForeignKey("assets.ticker", ondelete="CASCADE"), primary_key=True
     )
-    date: Mapped[date] = mapped_column(Date, primary_key=True)
+    date: Mapped[dt.date] = mapped_column(Date, primary_key=True)
     interval: Mapped[str] = mapped_column(String(8), primary_key=True, default="1d")
 
     open: Mapped[float] = mapped_column(Float, nullable=False)
@@ -59,7 +61,7 @@ class Price(Base):
     volume: Mapped[int] = mapped_column(BigInteger, nullable=False)
 
     source: Mapped[str] = mapped_column(String(32), nullable=False, default="yfinance")
-    ingested_at: Mapped[datetime] = mapped_column(
+    ingested_at: Mapped[dt.datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now()
     )
 
@@ -74,14 +76,14 @@ class News(Base):
     title: Mapped[str] = mapped_column(Text, nullable=False)
     summary: Mapped[str | None] = mapped_column(Text)
     publisher: Mapped[str | None] = mapped_column(String(128))
-    published_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
+    published_at: Mapped[dt.datetime] = mapped_column(DateTime(timezone=True), nullable=False)
 
     # Sentiment delivered by the data provider (e.g. Alpha Vantage), if any.
     # Model-based sentiment (baseline / FinBERT) is computed by the sentiment service.
     provider_sentiment: Mapped[float | None] = mapped_column(Float)
 
     source: Mapped[str] = mapped_column(String(32), nullable=False, default="yfinance")
-    ingested_at: Mapped[datetime] = mapped_column(
+    ingested_at: Mapped[dt.datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now()
     )
 

@@ -1,7 +1,7 @@
 from datetime import date
 
 import pytest
-from sqlalchemy import func, inspect, select
+from sqlalchemy import func, insert, inspect, select
 from sqlalchemy.exc import IntegrityError
 
 from services.storage.init_db import init_db
@@ -48,4 +48,4 @@ def test_price_requires_existing_asset(engine):
         "source": "test",
     }
     with pytest.raises(IntegrityError), engine.begin() as conn:
-        conn.execute(Price.__table__.insert().values(row))
+        conn.execute(insert(Price).values(row))
