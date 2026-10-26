@@ -39,6 +39,21 @@ curl http://localhost:8000/health/db
 docker compose exec postgres psql -U postgres -d financial_research
 ```
 
+Create tables and seed tracked tickers (safe to re-run):
+
+```bash
+python -m services.storage.init_db
+```
+
+Schema (`services/storage/models.py`):
+
+| Table | Key | Content |
+|---|---|---|
+| `assets` | `ticker` | tracked tickers from `configs/settings.yaml` |
+| `prices` | `ticker, date, interval` | OHLCV bars |
+| `news` | `id`, unique `url` | deduplicated articles |
+| `news_tickers` | `news_id, ticker` | which tickers an article is about |
+
 Scripts run on your machine connect to `localhost:5432` (values from `.env`).
 Shared connection code lives in `services/storage/database.py`
 (`get_engine()`, `session_scope()`, `check_connection()`).
